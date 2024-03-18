@@ -3,18 +3,23 @@
 import { usePetContext, useSearchContext } from "@/lib/hooks";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { useMemo } from "react";
 
 export const PetList = () => {
   const { pets, selectedPetId, handleChangeSelectedPetId } = usePetContext();
   const { searchQuery } = useSearchContext();
 
-  const filteredPets = pets.filter((pet) => {
-    const regex = new RegExp(searchQuery, "i");
-    return regex.test(pet.name);
-  });
+  const filteredPets = useMemo(
+    () =>
+      pets.filter((pet) => {
+        const regex = new RegExp(searchQuery, "i");
+        return regex.test(pet.name);
+      }),
+    [pets, searchQuery],
+  );
 
   return (
-    <ul className="border-light border-b bg-white">
+    <ul className="border-b border-light bg-white">
       {filteredPets.map((pet) => (
         <li key={pet.id}>
           <button

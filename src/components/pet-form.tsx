@@ -1,13 +1,12 @@
 "use client";
 
 import { usePetContext } from "@/lib/hooks";
-import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Textarea } from "./ui/textarea";
-
-const defaultImageUrl =
-  "https://bytegrad.com/course-assets/react-nextjs/pet-placeholder.png";
+import { addPet } from "@/actions/actions";
+import { PetFormBtn } from "./pet-form-btn";
+import { toast } from "sonner";
 
 type PetFormProps = {
   actionType: "add" | "edit";
@@ -15,30 +14,17 @@ type PetFormProps = {
 };
 
 export const PetForm = ({ actionType, onFormSubmission }: PetFormProps) => {
-  const { handleAddPet, handleEditPet, selectedPet } = usePetContext();
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const pet = {
-      name: formData.get("name") as string,
-      ownerName: formData.get("ownerName") as string,
-      imageUrl: (formData.get("imageUrl") as string) || defaultImageUrl,
-      age: +(formData.get("age") as string),
-      notes: formData.get("notes") as string,
-    };
-
-    if (actionType === "add") {
-      handleAddPet(pet);
-    } else if (actionType === "edit") {
-      handleEditPet(selectedPet!.id, pet);
-    }
-
-    onFormSubmission();
-  };
+  const { selectedPet } = usePetContext();
 
   return (
-    <form className="flex flex-col" onSubmit={handleSubmit}>
+    <form
+      action={async (formData) => {
+        const error = await addPet(formData);
+        if (error) return toast.warning(error.message);
+        onFormSubmission();
+      }}
+      className="flex flex-col"
+    >
       <div className="space-y-3">
         <div className="space-y-1">
           <Label htmlFor="name">Name</Label>
@@ -95,9 +81,7 @@ export const PetForm = ({ actionType, onFormSubmission }: PetFormProps) => {
         </div>
       </div>
 
-      <Button type="submit" className="mt-5 self-end">
-        {actionType === "add" ? "Add a new pet" : "Edit pet"}
-      </Button>
+      <PetFormBtn actionType={actionType} />
     </form>
   );
 };

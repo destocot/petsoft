@@ -22,11 +22,10 @@ type PetContextProviderProps = {
 };
 
 export default function PetContextProvider({
-  data,
+  data: pets,
   children,
 }: PetContextProviderProps) {
   // state
-  const [pets, setPets] = useState<Array<Pet>>(data);
   const [selectedPetId, setSelectedPetId] = useState<string | null>(null);
 
   // derived state
@@ -35,13 +34,13 @@ export default function PetContextProvider({
 
   // event handlers / action
   const handleAddPet = (newPet: Omit<Pet, "id">) => {
-    setPets((prev) => [
-      ...prev,
-      {
-        ...newPet,
-        id: Date.now().toString(),
-      },
-    ]);
+    // setPets((prev) => [
+    //   ...prev,
+    //   {
+    //     ...newPet,
+    //     id: Date.now().toString(),
+    //   },
+    // ]);
   };
 
   const handleEditPet = (petId: string, newPetData: Omit<Pet, "id">) => {
