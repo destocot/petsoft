@@ -28,6 +28,22 @@ const pets = [
     age: 4,
     notes: "Allergic to chicken.",
   },
+  {
+    name: "Max",
+    ownerName: "Sarah Johnson",
+    imageUrl:
+      "https://images.unsplash.com/photo-1629740067905-bd3f515aa739?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    age: 3,
+    notes: "Loves to play fetch.",
+  },
+  {
+    name: "Luna",
+    ownerName: "Michael Smith",
+    imageUrl:
+      "https://images.unsplash.com/photo-1627915009986-6639e924b297?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fHBldHN8ZW58MHx8MHx8fDA%3D",
+    age: 1,
+    notes: "Very friendly and sociable.",
+  },
 ];
 
 async function main() {

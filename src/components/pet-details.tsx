@@ -1,9 +1,9 @@
 "use client";
 
 import { usePetContext } from "@/lib/hooks";
-import { Pet } from "@/lib/types";
 import Image from "next/image";
 import { PetButton } from "./pet-button";
+import { Pet } from "@prisma/client";
 
 export const PetDetails = () => {
   const { selectedPet } = usePetContext();
@@ -37,7 +37,7 @@ function TopBar({ pet }: Props) {
   const { handleCheckoutPet } = usePetContext();
 
   return (
-    <div className="border-light flex items-center border-b bg-white px-8 py-5">
+    <div className="flex items-center border-b border-light bg-white px-8 py-5">
       <Image
         src={pet.imageUrl}
         alt="Selected pet image"
@@ -51,7 +51,7 @@ function TopBar({ pet }: Props) {
         <PetButton actionType="edit">Edit</PetButton>
         <PetButton
           actionType="checkout"
-          onClick={() => handleCheckoutPet(pet.id)}
+          onClick={async () => await handleCheckoutPet(pet.id)}
         >
           Checkout
         </PetButton>
@@ -80,7 +80,7 @@ function OtherInfo({ pet }: Props) {
 
 function Notes({ pet }: Props) {
   return (
-    <section className="border-light mx-8 mb-9 flex-1 rounded-md border bg-white px-7 py-5">
+    <section className="mx-8 mb-9 flex-1 rounded-md border border-light bg-white px-7 py-5">
       {pet.notes}
     </section>
   );
