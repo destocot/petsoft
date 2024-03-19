@@ -14,7 +14,7 @@ export async function POST(request: Request) {
       process.env.STRIPE_WEBHOOK_SECRET,
     );
   } catch (e) {
-    console.log("[POST /api/stripe] Error:", e);
+    console.error("[POST /api/stripe] Error:", e);
     return Response.json(null, { status: 400 });
   }
 
@@ -26,7 +26,7 @@ export async function POST(request: Request) {
       });
       break;
     default:
-      console.log(`Unhandled event type ${event.type}`);
+      console.error(`Unhandled event type ${event.type}`);
   }
 
   return Response.json(null, { status: 200 });

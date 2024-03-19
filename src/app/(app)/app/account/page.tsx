@@ -17,5 +17,3 @@ export default async function Account() {
     </main>
   );
 }
-
-//E7CTt8L7veE9mG45

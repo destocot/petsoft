@@ -54,7 +54,7 @@ const userData: Prisma.UserCreateInput = {
 };
 
 async function main() {
-  // await prisma.user.deleteMany();
+  await prisma.user.deleteMany();
   console.log(`Start seeding ...`);
 
   const hashedPassword = await bcrypt.hash("example", 10);

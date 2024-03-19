@@ -15,8 +15,6 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 /* --- user actions --- */
 export async function logIn(prevState: unknown, formData: unknown) {
-  await delay(500);
-
   if (!(formData instanceof FormData)) {
     return { message: "Invalid form data." };
   }
@@ -34,8 +32,6 @@ export async function logIn(prevState: unknown, formData: unknown) {
 }
 
 export async function signUp(prevState: unknown, formData: unknown) {
-  await delay(500);
-
   if (!(formData instanceof FormData)) {
     return { message: "Invalid form data." };
   }
@@ -68,15 +64,12 @@ export async function signUp(prevState: unknown, formData: unknown) {
 }
 
 export async function logOut() {
-  await delay(500);
   await signOut({ redirectTo: "/" });
 }
 
 /* --- pet actions --- */
 
 export async function addPet(pet: unknown) {
-  await delay(500);
-
   const session = await checkAuth();
 
   const validatedPet = petFormSchema.safeParse(pet);
@@ -98,8 +91,6 @@ export async function addPet(pet: unknown) {
 }
 
 export async function editPet(petId: unknown, newPetData: unknown) {
-  await delay(500);
-
   const session = await checkAuth();
 
   const validatedPetId = petIdSchema.safeParse(petId);
@@ -127,8 +118,6 @@ export async function editPet(petId: unknown, newPetData: unknown) {
 }
 
 export async function deletePet(petId: unknown) {
-  await delay(500);
-
   const session = await checkAuth();
 
   const validatedPetId = petIdSchema.safeParse(petId);

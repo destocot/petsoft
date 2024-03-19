@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { DEFAULT_PET_IMAGE } from "./constants";
 
-export const petIdSchema = z.string().cuid();
+export const petIdSchema = z.string().regex(/^[0-9a-f]{24}$/);
 
 export const petFormSchema = z
   .object({
