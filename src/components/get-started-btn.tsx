@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button } from "./ui/button";
-import { auth } from "@/lib/auth";
+import { auth } from "@/lib/auth-no-edge";
 
 export const GetStartedBtn = async () => {
   const session = await auth();
