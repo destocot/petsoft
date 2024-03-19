@@ -1,3 +1,4 @@
+import { GetStartedBtn } from "@/components/get-started-btn";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -11,6 +12,7 @@ export default function Home() {
         alt="Preview of PetSoft"
         width={519}
         height={472}
+        priority
       />
 
       <div>
@@ -27,9 +29,7 @@ export default function Home() {
         </p>
 
         <div className="mt-10 space-x-3">
-          <Button asChild>
-            <Link href="/signup">Get started</Link>
-          </Button>
+          <GetStartedBtn />
           <Button variant="secondary" asChild>
             <Link href="/login">Log in</Link>
           </Button>

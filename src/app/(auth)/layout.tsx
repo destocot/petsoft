@@ -1,7 +1,14 @@
+import { Logo } from "@/components/logo";
+
 export default function AuthLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <div>header{children}</div>;
+  return (
+    <div className="flex min-h-screen flex-col items-center justify-center gap-y-5">
+      <Logo />
+      {children}
+    </div>
+  );
 }

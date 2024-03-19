@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-type H1Props = React.ComponentPropsWithoutRef<"h1">;
+type H1Props = React.HTMLAttributes<HTMLHeadingElement>;
 
 export const H1 = ({ children, className }: H1Props) => {
   return (
